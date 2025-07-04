@@ -1,5 +1,8 @@
+import NavBar from "./components/NavBar";
+import Layout from "./layout/Layout";
+
 function App() {
-  return <h1 className="font-bold text-3xl">HEllo World</h1>;
+  return <Layout></Layout>;
 }
 
 export default App;
