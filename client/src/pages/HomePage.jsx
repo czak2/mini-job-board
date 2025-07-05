@@ -3,16 +3,27 @@ import JobCard from "../components/JobCard";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getAllJobs } from "../api/jobApi";
+import SearchBar from "../components/SearchBar";
 
 const HomePage = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const filteredJobs = jobs.filter(
+    (job) =>
+      !search ||
+      job.title.toLowerCase().includes(search.toLowerCase()) ||
+      job.company.toLowerCase().includes(search.toLowerCase()) ||
+      job.description.toLowerCase().includes(search.toLowerCase())
+  );
   useEffect(() => {
     setIsLoading(true);
     const fetchJobs = async () => {
       const jobsData = await getAllJobs();
 
       setJobs(jobsData);
+
       setIsLoading(false);
     };
     fetchJobs();
@@ -20,19 +31,26 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="mb-8 flex flex-col md:flex-row">
         <h1 className="text-3xl font-bold mb-4 ">
           Spark Your Career with BlazeHire
         </h1>
-        search bar
+        <SearchBar
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        ></SearchBar>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {isLoading && <p>Loading </p>}
         {!isLoading && jobs.length === 0 && <p>No data found</p>}
         {!isLoading &&
-          jobs.map((job) => {
+          filteredJobs.length > 0 &&
+          filteredJobs.map((job) => {
             return <JobCard key={job.id} job={job}></JobCard>;
           })}
+        {filteredJobs.length === 0 && jobs.length !== 0 && (
+          <p>No jobs found matching your search.</p>
+        )}
       </div>
     </div>
   );
