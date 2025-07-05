@@ -1,38 +1,23 @@
 import React from "react";
 import JobCard from "../components/JobCard";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getAllJobs } from "../api/jobApi";
 
 const HomePage = () => {
-  const jobs = [
-    {
-      id: 1,
-      title: "Full stack",
-      company: "Tst ",
-      location: "Banglore",
-      description:
-        "cloremdfbjfbsdjfbsdjfbsdjfbsjbdcbxloremdfbjfbsdjfbsdjfbsdjfbsjbdcbx",
-    },
-    {
-      id: 2,
-      title: "Backend Engineer",
-      company: "Hello123",
-      location: "Joghpur",
-      description: "testing123",
-    },
-    {
-      id: 3,
-      title: "Backend Engineer",
-      company: "Hello123",
-      location: "Joghpur",
-      description: "testing123",
-    },
-    {
-      id: 4,
-      title: "Backend Engineer",
-      company: "test123",
-      location: "Joghpur",
-      description: "testing123",
-    },
-  ];
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchJobs = async () => {
+      const jobsData = await getAllJobs();
+
+      setJobs(jobsData);
+      setIsLoading(false);
+    };
+    fetchJobs();
+  }, []);
+
   return (
     <div>
       <div className="mb-8">
@@ -42,9 +27,12 @@ const HomePage = () => {
         search bar
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {jobs.map((job) => {
-          return <JobCard key={job.id} job={job}></JobCard>;
-        })}
+        {isLoading && <p>Loading </p>}
+        {!isLoading && jobs.length === 0 && <p>No data found</p>}
+        {!isLoading &&
+          jobs.map((job) => {
+            return <JobCard key={job.id} job={job}></JobCard>;
+          })}
       </div>
     </div>
   );

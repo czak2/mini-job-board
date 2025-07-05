@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { createJob } from "../api/jobApi";
 
 const PostJobPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     company: "",
@@ -13,8 +15,14 @@ const PostJobPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await createJob(formData);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
