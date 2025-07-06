@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getAllJobs } from "../api/jobApi";
 import SearchBar from "../components/SearchBar";
-
+import { SyncLoader } from "react-spinners";
 const HomePage = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="mb-8 flex flex-col md:flex-row">
+      <div className="mb-8 flex flex-col md:flex-row lg:mt-5 ">
         <h1 className="text-3xl font-bold mb-4 ">
           Spark Your Career with BlazeHire
         </h1>
@@ -40,9 +40,18 @@ const HomePage = () => {
           onChange={(e) => setSearch(e.target.value)}
         ></SearchBar>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {isLoading && <p>Loading </p>}
-        {!isLoading && jobs.length === 0 && <p>No data found</p>}
+      {!isLoading && jobs.length === 0 && (
+        <p className="flex items-center justify-center text-primary font-bold text-2xl">
+          No jobs for now
+        </p>
+      )}
+      {isLoading && (
+        <div className="flex items-center justify-center h-24">
+          <SyncLoader color="#dc2626" />
+        </div>
+      )}
+
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {!isLoading &&
           filteredJobs.length > 0 &&
           filteredJobs.map((job) => {

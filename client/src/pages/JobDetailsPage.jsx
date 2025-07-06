@@ -27,12 +27,40 @@ const JobDetailsPage = () => {
         </Link>
       </div>
       {isLoading && <p>Loading</p>}
+      {!isLoading && !job && (
+        <p className="flex items-center justify-center font-bold text-2xl text-primary">
+          No jobs found with this id
+        </p>
+      )}
       {!isLoading && job && (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 ">
           <div className="bg-primary py-6 px-8 rounded-t-lg">
             <h1 className="text-2xl font-semibold text-white">{job.title}</h1>
           </div>
           <div className="bg-white rounded-b-lg shadow-sm p-6 flex flex-col md:flex-row gap-6">
+            <div className="md:w-1/3">
+              <h2 className="text-xl font-semibold text-primary mb-3">
+                Details
+              </h2>
+              <p className="text-base font-medium text-primary-dark mb-2">
+                <span className="text-primary-dark">Company Name: </span>
+                {job.company}
+              </p>
+              <div className="flex items-center text-base font-medium text-primary-dark mb-4">
+                <span className="w-2 h-2 rounded-full bg-primary-light mr-2"></span>
+                {job.location}
+              </div>
+              <p className="text-base font-medium text-secondary mb-4">
+                <span className="text-primary-dark">Job ID: </span>
+                {job.id}
+              </p>
+              <Link
+                to="/"
+                className="px-4 py-2 bg-secondary text-white text-base font-semibold rounded-md hover:bg-primary-dark transition duration-200"
+              >
+                Apply here
+              </Link>
+            </div>
             <div className="md:w-2/3">
               <h2 className="text-xl font-semibold text-primary mb-3">
                 Job Description
@@ -40,24 +68,6 @@ const JobDetailsPage = () => {
               <p className="text-base font-normal text-gray-700">
                 {job.description}
               </p>
-            </div>
-            <div className="md:w-1/3">
-              <h2 className="text-xl font-semibold text-primary mb-3">
-                Details
-              </h2>
-              <p className="text-base font-medium text-primary-dark mb-2">
-                {job.company}
-              </p>
-              <div className="flex items-center text-base font-medium text-primary-dark mb-4">
-                <span className="w-2 h-2 rounded-full bg-primary-light mr-2"></span>
-                {job.location}
-              </div>
-              <Link
-                to="/"
-                className="px-4 py-2 bg-secondary text-white text-base font-semibold rounded-md hover:bg-primary-dark transition duration-200"
-              >
-                Apply here
-              </Link>
             </div>
           </div>
         </div>

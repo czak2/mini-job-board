@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const NavBar = () => {
   return (
-    <header className="bg-gradient-to-r from-primary to-secondary shadow-md">
+    <header className="bg-gradient-to-r from-primary to-secondary shadow-md fixed z-20 w-full">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           to="/"
