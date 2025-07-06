@@ -25,3 +25,12 @@ export const getJobById = async (id) => {
     console.log(error);
   }
 };
+export const applyToJob = async (jobId, appData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/${jobId}/apply`, appData);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

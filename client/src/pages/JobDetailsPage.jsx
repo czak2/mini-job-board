@@ -4,7 +4,9 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { useEffect } from "react";
 import { getJobById } from "../api/jobApi";
 import { useState } from "react";
+import Applyform from "../components/Applyform";
 const JobDetailsPage = () => {
+  const [applyForm, setApplyForm] = useState(false);
   const [job, setJob] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
@@ -54,12 +56,14 @@ const JobDetailsPage = () => {
                 <span className="text-primary-dark">Job ID: </span>
                 {job.id}
               </p>
-              <Link
-                to="/"
+              <button
+                onClick={() => {
+                  setApplyForm(true);
+                }}
                 className="px-4 py-2 bg-secondary text-white text-base font-semibold rounded-md hover:bg-primary-dark transition duration-200"
               >
                 Apply here
-              </Link>
+              </button>
             </div>
             <div className="md:w-2/3">
               <h2 className="text-xl font-semibold text-primary mb-3">
@@ -70,6 +74,11 @@ const JobDetailsPage = () => {
               </p>
             </div>
           </div>
+        </div>
+      )}
+      {applyForm && (
+        <div className="bg-primary-light/10 rounded-lg shadow-md p-6">
+          <Applyform jobId={id} onClose={() => setApplyForm(false)} />
         </div>
       )}
     </div>
