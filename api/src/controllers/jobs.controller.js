@@ -43,7 +43,7 @@ async function addJob(req, res) {
     const jobs = JSON.parse(data);
 
     const newJob = {
-      id: jobs.length + 1,
+      id: Date.now(),
       ...req.body,
     };
     jobs.push(newJob);
@@ -81,7 +81,7 @@ async function applyToJobs(req, res) {
     const data = await fs.readFile(applicationFilePath, "utf-8");
     const applications = JSON.parse(data);
     const newApplication = {
-      id: applications.length + 1,
+      id: Date.now(),
       jobId: id,
       ...applicationData,
     };
