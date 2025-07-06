@@ -1,9 +1,10 @@
 const fs = require("fs").promises;
+const { console } = require("inspector");
 const path = require("path");
 
 const dataDir = path.join(__dirname, "../data");
 const jobsFilePath = path.join(dataDir, "jobs.json");
-
+const applicationFilePath = path.join(dataDir, "applications.json");
 async function checkFileExists() {
   try {
     await fs.access(jobsFilePath);
@@ -16,7 +17,13 @@ async function checkFileExists() {
     }
   }
 }
-
+async function checkApplicationFileExits() {
+  try {
+    await fs.access(applicationFilePath);
+  } catch (error) {
+    await fs.writeFile(applicationFilePath, "[]", "utf-8");
+  }
+}
 async function getAllJobs(req, res) {
   try {
     await checkFileExists();
@@ -65,8 +72,33 @@ async function getJobById(req, res) {
   }
 }
 
+async function applyToJobs(req, res) {
+  checkApplicationFileExits();
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const applicationData = req.body;
+    const data = await fs.readFile(applicationFilePath, "utf-8");
+    const applications = JSON.parse(data);
+    const newApplication = {
+      id: applications.length + 1,
+      jobId: id,
+      ...applicationData,
+    };
+
+    applications.push(newApplication);
+    await fs.writeFile(applicationFilePath, JSON.stringify(applications));
+
+    res.status(201).json(newApplication);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error applying to job");
+  }
+}
+
 module.exports = {
   getAllJobs,
   addJob,
   getJobById,
+  applyToJobs,
 };
