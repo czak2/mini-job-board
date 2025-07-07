@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { createJob } from "../api/jobApi";
-
+import { toast } from "react-toastify";
 const PostJobPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -19,9 +19,11 @@ const PostJobPage = () => {
     e.preventDefault();
     try {
       await createJob(formData);
+      toast.success("Job posted successfully");
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { applyToJob } from "../api/jobApi";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Applyform = ({ jobId, onClose }) => {
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ const Applyform = ({ jobId, onClose }) => {
     e.preventDefault();
     try {
       await applyToJob(jobId, formData);
+      toast.success("Application submitted");
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
     onClose;
   };
