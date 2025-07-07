@@ -5,7 +5,7 @@ const JobCard = ({ job }) => {
     <div className="bg-red-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 w-full max-w-sm sm:max-w-md mx-auto hover:bg-red-100">
       <div className="h-2 bg-primary rounded-lg"></div>
       <div className="p-4 sm:p-6">
-        <div className="mb-3 sm:mb-4">
+        <div className="mb-2">
           <h3 className="text-base sm:text-lg font-bold text-primary mb-1 whitespace-nowrap ">
             <span className="text-primary-dark font-medium">Job Title: </span>
             {job.title}
@@ -17,15 +17,15 @@ const JobCard = ({ job }) => {
             {job.company}
           </p>
         </div>
-        <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-5">
+        <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-2">
           <span className="flex items-center text-xl sm:text-xl text-secondary">
             <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
             <span className="pb-2"> {job.location}</span>
           </span>
         </div>
-        <p className="text-sm lg:text-md text-gray-700 mb-4 sm:mb-6">
+        <p className="text-sm lg:text-[16px] text-gray-700 mb-4 sm:mb-6">
           <span className="text-primary-dark font-medium">Description: </span>
-          {job.description.substring(0, 40)}...
+          {job.description.substring(0, 25)}...
         </p>
         <div className="flex items-center justify-end">
           <Link
