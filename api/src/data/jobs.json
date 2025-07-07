@@ -1,1 +1,30 @@
-[{"id":1751826986170,"title":"Full Stack developer","company":"ABCXYZ","location":"remote","description":"Full stack developer with abiltity to build real world project having good knowledge of database."},{"id":1751827330281,"title":"Marketing","company":"cm","location":"usa","description":"Intership for marketing"}]
+[
+  {
+    "id": 1751870635459,
+    "title": "Frontend Developer",
+    "company": "Spotify",
+    "location": "New York, NY",
+    "description": "We are looking for a Frontend Developer to join Spotify Web Player team in NYC. You'll work on the music streaming interface used by millions daily."
+  },
+  {
+    "id": 1751870770227,
+    "title": "Marketing Intern",
+    "company": "Nike",
+    "location": "Remote",
+    "description": "Summer internship for marketing students. Assist with social media campaigns and analytics.\nRequirements:\n  -Currently in college (any major)  \n  -Uses social media more than your textbooks  \n  - Can differentiate between Nike and Adidas blindfolded "
+  },
+  {
+    "id": 1751870905203,
+    "title": "Data Scientist",
+    "company": "Netflix",
+    "location": "Calofornia",
+    "description": "Analyze viewer data to improve recommendations. Python and SQL required.\nThe role:\n  - Analyze viewing patterns why do people rewatch The Office so much?  \n  - Build ML models in Python  \n  - Make slides that convince execs your math is correct "
+  },
+  {
+    "id": 1751871150836,
+    "title": "Full-Stack Developer (MERN)",
+    "company": "Matellio",
+    "location": "Jodhpur",
+    "description": "We are looling to  hiring a Full-Stack Developer to build and maintain web applications using the MERN stack"
+  }
+]

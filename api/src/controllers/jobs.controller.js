@@ -1,5 +1,4 @@
 const fs = require("fs").promises;
-const { console } = require("inspector");
 const path = require("path");
 
 const dataDir = path.join(__dirname, "../data");
@@ -73,10 +72,10 @@ async function getJobById(req, res) {
 }
 
 async function applyToJobs(req, res) {
-  checkApplicationFileExits();
   try {
+    await checkApplicationFileExits();
     const { id } = req.params;
-    console.log(id);
+
     const applicationData = req.body;
     const data = await fs.readFile(applicationFilePath, "utf-8");
     const applications = JSON.parse(data);
