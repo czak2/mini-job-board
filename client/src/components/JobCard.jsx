@@ -10,7 +10,7 @@ const JobCard = ({ job }) => {
             <span className="text-primary-dark font-medium">Job Title: </span>
             {job.title}
           </h3>
-          <p className="text-sm sm:text-md text-secondary font-semibold">
+          <p className="text-md sm:text-xl text-secondary font-semibold">
             <span className="text-primary-dark font-medium">
               Company Name :{" "}
             </span>
@@ -18,14 +18,14 @@ const JobCard = ({ job }) => {
           </p>
         </div>
         <div className="flex gap-2 sm:gap-3 mb-4 sm:mb-5">
-          <span className="flex items-center text-xs sm:text-sm text-secondary">
+          <span className="flex items-center text-xl sm:text-xl text-secondary">
             <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
-            {job.location}
+            <span className="pb-2"> {job.location}</span>
           </span>
         </div>
         <p className="text-sm lg:text-md text-gray-700 mb-4 sm:mb-6">
           <span className="text-primary-dark font-medium">Description: </span>
-          {job.description.substring(0, 10)}...
+          {job.description.substring(0, 40)}...
         </p>
         <div className="flex items-center justify-end">
           <Link

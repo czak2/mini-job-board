@@ -1,6 +1,7 @@
 import React from "react";
 import { IoSearch } from "react-icons/io5";
-const SearchBar = ({ value, onChange }) => {
+import { MdOutlineCancel } from "react-icons/md";
+const SearchBar = ({ value, onChange, onSeachRemove }) => {
   return (
     <div className="relative w-full">
       <input
@@ -12,6 +13,9 @@ const SearchBar = ({ value, onChange }) => {
       />
       <div className="absolute left-3 top-3.5 text-primary">
         <IoSearch />
+      </div>
+      <div className="absolute right-3 top-3.5 text-primary text-xl cursor-pointer">
+        <MdOutlineCancel onClick={onSeachRemove} />
       </div>
     </div>
   );

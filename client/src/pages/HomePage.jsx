@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getAllJobs } from "../api/jobApi";
 import SearchBar from "../components/SearchBar";
 import { SyncLoader } from "react-spinners";
+import Faq from "../components/Faq";
 const HomePage = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,7 @@ const HomePage = () => {
           Spark Your Career with BlazeHire
         </h1>
         <SearchBar
+          onSeachRemove={() => setSearch("")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         ></SearchBar>
@@ -61,6 +63,7 @@ const HomePage = () => {
           <p>No jobs found matching your search.</p>
         )}
       </div>
+      <Faq></Faq>
     </div>
   );
 };
